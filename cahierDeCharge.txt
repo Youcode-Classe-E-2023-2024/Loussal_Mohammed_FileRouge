@@ -1,0 +1,59 @@
+Cahier des Charges : Projet _**Chatatune**_
+1. Introduction:
+Le projet Chatatune vise à concevoir une plateforme de réseau social novatrice axée sur l'expérience utilisateur, permettant aux utilisateurs de partager, évaluer et gérer leurs données personnelles de manière intuitive et sécurisée. Le nom "Chatatune" reflète l'idée d'une communauté interactive centrée autour de la passion pour la musique.
+
+2. Objectifs:
+L'objectif principal est de créer une plateforme sociale complète comprenant des fonctionnalités de gestion des données utilisateur, une sécurité renforcée, ainsi que des pages d'inscription, de connexion et de gestion de profil.
+
+3. Fonctionnalités:
+3.1 Page d'Accueil:
+Affichage dynamique des produits cosmétiques avec images, prix et descriptions.
+Système de navigation fluide pour une expérience utilisateur optimale.
+3.2 Page de Reviews:
+Possibilité pour les utilisateurs de laisser des avis détaillés avec système de notation.
+Affichage des avis avec date et utilisateur.
+3.3 Page de Support:
+Mise en place d'une page de support interactif pour la gestion rapide des requêtes clients.
+Formulaire de contact pour une communication directe.
+3.4 Page "About":
+Intégration d'une page informative sur l'histoire du site, son équipe et sa mission.
+3.5 Admin Dashboard:
+Tableau de bord administrateur pour une gestion efficace des produits, utilisateurs et stocks.
+Outils avancés pour la prise de décisions basée sur les données.
+3.6 Page de Connexion:
+Interface permettant aux utilisateurs de se connecter avec leurs identifiants.
+3.7 Page d'Inscription:
+Formulaire d'inscription pour de nouveaux utilisateurs avec vérification des données.
+3.8 Page de Profil Utilisateur:
+Possibilité pour les utilisateurs de mettre à jour leurs profils.
+Fonctionnalité de gestion des données personnelles.
+Historique des publications de l'utilisateur.
+3.9 Gestion des Publications:
+Permet aux utilisateurs de créer, modifier et supprimer leurs publications.
+4. Technologies Utilisées:
+Backend : Laravel (version X.X)
+Frontend : React.js pour la dynamique des pages, Vue.js pour la réactivité, Tailwind CSS pour le style.
+Base de données : SQL (MySQL, PostgreSQL, etc.)
+5. Interface Utilisateur:
+Conception d'une interface utilisateur moderne et réactive.
+Utilisation de Tailwind CSS pour un design élégant et efficace.
+Intégration de React.js et Vue.js pour des pages dynamiques et interactives.
+6. Sécurité:
+Mise en œuvre des meilleures pratiques de sécurité web.
+Gestion des autorisations et des accès.
+Chiffrement des données sensibles.
+Authentification à deux facteurs pour les utilisateurs.
+7. Livrables:
+Code source du projet.
+Documentation technique exhaustive.
+Manuel d'utilisation pour l'administrateur et les utilisateurs.
+8. Calendrier de Développement:
+Période de deux (2) mois, du 02/02/2024 au 02/04/2024.
+Phases : Planification, Développement, Test et Validation, Livraison.
+9. Tests:
+Tests d'interface utilisateur, de sécurité, de performance, etc.
+10. Support Technique:
+Période de support technique post-déploiement.
+Procédures de mise à jour et gestion des corrections de bugs.
+11. Conclusion:
+Le projet Chatatune s'engage à offrir une expérience sociale immersive et sécurisée centrée autour de la passion pour la musique. La collaboration étroite avec le superviseur est recommandée pour garantir le succès du projet. Des réunions régulières seront planifiées pour évaluer l'avancement, résoudre les problèmes et faciliter une communication fluide avec toutes les parties prenantes. En cas de retards potentiels, des analyses seront effectuées avec des mesures correctives pour minimiser l'impact sur le calendrier global du projet.
