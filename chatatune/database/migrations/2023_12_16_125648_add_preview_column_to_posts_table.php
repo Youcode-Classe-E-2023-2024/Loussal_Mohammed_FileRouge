@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('comments', function (Blueprint $table) {
             $table->json('preview')->nullable();
             $table->string('preview_url', 2000)->nullable();
         });
@@ -21,7 +21,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('comments', function (Blueprint $table) {
             $table->dropColumn('preview_url');
             $table->dropColumn('preview');
         });

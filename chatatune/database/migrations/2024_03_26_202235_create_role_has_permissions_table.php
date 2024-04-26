@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('role_has_permissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained('comments');
-            $table->text('comment');
-            $table->foreignId('user_id')->constrained('users');
+            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('permission_id');
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('permission_id')->references('id')->on('permissions');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('role_has_permisions');
     }
 };

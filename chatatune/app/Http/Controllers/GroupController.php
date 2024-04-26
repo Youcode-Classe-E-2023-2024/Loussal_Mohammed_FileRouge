@@ -48,17 +48,17 @@ class GroupController extends Controller
 
         if ($group->hasApprovedUser($userId)) {
             $posts = Post::postsForTimeline($userId, false)
-                ->leftJoin('groups AS g', 'g.pinned_post_id', 'posts.id')
+                ->leftJoin('groups AS g', 'g.pinned_post_id', 'comments.id')
                 ->where('group_id', $group->id)
                 ->orderBy('g.pinned_post_id', 'desc')
-                ->orderBy('posts.created_at', 'desc')
+                ->orderBy('comments.created_at', 'desc')
                 ->paginate(10);
             $posts = PostResource::collection($posts);
         } else {
             return Inertia::render('Group/View', [
                 'success' => session('success'),
                 'group' => new GroupResource($group),
-                'posts' => null,
+                'comments' => null,
                 'users' => [],
                 'requests' => []
             ]);
@@ -78,7 +78,7 @@ class GroupController extends Controller
 
         $photos = PostAttachment::query()
             ->select('post_attachments.*')
-            ->join('posts AS p', 'p.id', 'post_attachments.post_id')
+            ->join('comments AS p', 'p.id', 'post_attachments.post_id')
             ->where('p.group_id', $group->id)
             ->where('mime', 'like', 'image/%')
             ->latest()
@@ -89,7 +89,7 @@ class GroupController extends Controller
         return Inertia::render('Group/View', [
             'success' => session('success'),
             'group' => new GroupResource($group),
-            'posts' => $posts,
+            'comments' => $posts,
             'users' => GroupUserResource::collection($users),
             'requests' => UserResource::collection($requests),
             'photos' => PostAttachmentResource::collection($photos)

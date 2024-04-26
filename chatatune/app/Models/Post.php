@@ -63,7 +63,7 @@ class Post extends Model
 
     public static function postsForTimeline($userId, $getLatest = true): Builder
     {
-        $query = Post::query() // SELECT * FROM posts
+        $query = Post::query() // SELECT * FROM comments
         ->withCount('reactions') // SELECT COUNT(*) from reactions
         ->with([
             'user',

@@ -30,11 +30,11 @@ class ProfileController extends Controller
         $followerCount = Follower::where('user_id', $user->id)->count();
 
         $posts = Post::postsForTimeline(Auth::id(), false)
-            ->leftJoin('users AS u', 'u.pinned_post_id', 'posts.id')
+            ->leftJoin('users AS u', 'u.pinned_post_id', 'comments.id')
             ->where('user_id', $user->id)
             ->whereNull('group_id')
             ->orderBy('u.pinned_post_id', 'desc')
-            ->orderBy('posts.created_at', 'desc')
+            ->orderBy('comments.created_at', 'desc')
             ->paginate(10);
 
         $posts = PostResource::collection($posts);
@@ -59,7 +59,7 @@ class ProfileController extends Controller
             'isCurrentUserFollower' => $isCurrentUserFollower,
             'followerCount' => $followerCount,
             'user' => new UserResource($user),
-            'posts' => $posts,
+            'comments' => $posts,
             'followers' => UserResource::collection($followers),
             'followings' => UserResource::collection($followings),
             'photos' => PostAttachmentResource::collection($photos)

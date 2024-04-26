@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('post_attachments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->constrained('posts');
+            $table->foreignId('post_id')->constrained('comments');
             $table->string('name', 255); // test.png
             $table->string('path', 255); //
             $table->string('mime', 25);  // image/png

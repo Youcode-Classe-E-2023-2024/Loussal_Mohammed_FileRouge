@@ -8,7 +8,7 @@ class posts
 {
     public function listPosts(Post $post) {
         $posts = $post->withTrashed()->get();
-        return view('admin.posts', compact('posts'));
+        return view('admin.comments', compact('posts'));
     }
 
     public function dropPost(Post $post) {

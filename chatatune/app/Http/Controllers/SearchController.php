@@ -41,7 +41,7 @@ class SearchController extends Controller
 
 
         return inertia('Search', [
-            'posts' => $posts,
+            'comments' => $posts,
             'search' => $search,
             'users' => UserResource::collection($users),
             'groups' => GroupResource::collection($groups)

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
+use App\Http\Controllers\RoleController;
 
 class HomeController extends Controller
 {
@@ -20,13 +21,13 @@ class HomeController extends Controller
         $userId = Auth::id();
         $user = $request->user();
         $posts = Post::postsForTimeline($userId)
-            ->select('posts.*')
+            ->select('comments.*')
             ->leftJoin('followers AS f', function ($join) use ($userId) {
-                $join->on('posts.user_id', '=', 'f.user_id')
+                $join->on('comments.user_id', '=', 'f.user_id')
                     ->where('f.follower_id', '=', $userId);
             })
             ->leftJoin('group_users AS gu', function ($join) use ($userId) {
-                $join->on('gu.group_id', '=', 'posts.group_id')
+                $join->on('gu.group_id', '=', 'comments.group_id')
                     ->where('gu.user_id', '=', $userId)
                     ->where('gu.status', GroupUserStatus::APPROVED->value);
             })
@@ -34,10 +35,10 @@ class HomeController extends Controller
                 /** @var \Illuminate\Database\Query\Builder $query */
                 $query->whereNotNull('f.follower_id')
                     ->orWhereNotNull('gu.group_id')
-                    ->orWhere('posts.user_id', $userId)
+                    ->orWhere('comments.user_id', $userId)
                     ;
             })
-//            ->whereNot('posts.user_id', $userId)
+//            ->whereNot('comments.user_id', $userId)
             ->paginate(10);
 
         $posts = PostResource::collection($posts);
@@ -55,8 +56,12 @@ class HomeController extends Controller
             ->get();
 
 
+        $user = auth()->user()->id;
+        if(RoleController::userHasRole($user, 'admin')) {
+            return redirect()->route('/listUsers');
+        }
         return Inertia::render('Home', [
-            'posts' => $posts,
+            'comments' => $posts,
             'groups' => GroupResource::collection($groups),
             'followings' => UserResource::collection($user->followings)
         ]);

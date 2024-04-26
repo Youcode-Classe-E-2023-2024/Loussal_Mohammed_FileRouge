@@ -35,7 +35,7 @@ return new class extends Migration {
         Schema::table('post_reactions', function (Blueprint $table) {
             $table->dropColumn('object_type');
             $table->renameColumn('object_id', 'post_id');
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('post_id')->references('id')->on('comments');
         });
     }
 };

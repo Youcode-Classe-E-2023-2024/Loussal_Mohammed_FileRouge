@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminDashboard;
+use App\Http\Controllers\comments\comments;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\groups\groups;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\posts\posts;
@@ -9,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\users\users;
+use App\Models\User;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,16 +26,26 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+$middleware = ['RoleController'];
 
 Route::get('/', [HomeController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/listUsers', [users::class, 'listUsers']);
-Route::delete('/listUsers/{user}', [users::class, 'dropUser'])->name('dropUser');
-Route::post('/listUsers/{user}', [users::class, 'restoreUser'])->name('restoreUser');
-Route::get('/listPosts', [posts::class, 'listPosts']);
-Route::delete('/listPosts/{post}', [posts::class, 'dropPost'])->name('dropPost');
-Route::post('/listPosts/{post}', [posts::class, 'restorePost'])->name('restorePost');
+Route::middleware($middleware)->group(function()
+{
+    Route::get('/listUsers', [users::class, 'listUsers']);
+    Route::delete('/listUsers/{user}', [users::class, 'dropUser'])->name('dropUser');
+    Route::post('/listUsers/{user}', [users::class, 'restoreUser'])->name('restoreUser');
+    Route::get('/listPosts', [posts::class, 'listPosts']);
+    Route::delete('/listPosts/{post}', [posts::class, 'dropPost'])->name('dropPost');
+    Route::post('/listPosts/{post}', [posts::class, 'restorePost'])->name('restorePost');
+    Route::get('/listGroups', [groups::class, 'listGroups']);
+    Route::delete('/listGroups/{group}', [groups::class, 'dropGroup'])->name('dropGroup');
+    Route::post('/listUsers/{group}', [groups::class, 'restoreGroup'])->name('restoreGroup');
+    Route::get('/listComments', [comments::class, 'listComments']);
+    Route::delete('/listComments/{post}', [comments::class, 'dropComment'])->name('dropComment');
+    Route::post('/listComments/{post}', [comments::class, 'restoreComment'])->name('restoreComment');
+});
 
 Route::get('/api/getNombreJours', [AdminDashboard::class, 'getNombreJours']);
 
